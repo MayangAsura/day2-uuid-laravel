@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\UuidTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -11,15 +12,18 @@ use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, UuidTrait;
 
     protected static function boot(){
-        static::creating(function ($model) {
-            if ( ! $model->getKey()) {
+        
+        parent::boot();
+        UuidTrait::bootUuidTrait();
+        // static::creating(function ($model) {
+        //     if ( ! $model->getKey()) {
                 
-                $model->{$model->getKeyName()} = (string) Str::uuid();
-            }
-        });
+        //         $model->{$model->getKeyName()} = (string) Str::uuid();
+        //     }
+        // });
     }
 
     public function getIncrementing(){
