@@ -14,7 +14,7 @@ class User extends Authenticatable
 {
     use Notifiable, UuidTrait;
 
-    protected static function boot(){
+    public static function boot(){
         
         parent::boot();
         UuidTrait::bootUuidTrait();
