@@ -13,16 +13,4 @@ class Otp extends Model
 
     protected $table = 'otp_codes';
 
-    protected static function boot(){
-        parent::boot();
-        UuidTrait::bootUuidTrait();
-    }
-
-    public function getIncrementing(){
-        return false;
-    }
-
-    public function getKeyType(){
-        return 'string';
-    }
 }

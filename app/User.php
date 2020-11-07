@@ -14,24 +14,16 @@ class User extends Authenticatable
 {
     use Notifiable, UuidTrait;
 
+    protected function get_guest_id(){
+        $role = Role::where('name', 'user')->first();
+        return $role->id;
+    }
+
     public static function boot(){
-        
         parent::boot();
-        UuidTrait::bootUuidTrait();
-        // static::creating(function ($model) {
-        //     if ( ! $model->getKey()) {
-                
-        //         $model->{$model->getKeyName()} = (string) Str::uuid();
-        //     }
-        // });
-    }
-
-    public function getIncrementing(){
-        return false;
-    }
-
-    public function getKeyType(){
-        return 'string';
+        static::creating(function($model){
+            $model->roles_id = $model->get_guest_id();
+        });
     }
     /**
      * The attributes that are mass assignable.
@@ -39,7 +31,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email'
     ];
 
     /**
@@ -47,8 +39,8 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token',
+    protected $hidden = [ 
+        'password', 'remember_token', 'email_verified_at', 'roles_id', 
     ];
 
     /**

@@ -10,16 +10,5 @@ class Role extends Model
     
     protected $guarded=[];
 
-    protected static function boot(){
-        parent::boot();
-        UuidTrait::bootUuidTrait();
-    }
-
-    public function getIncrementing(){
-        return false;
-    }
-
-    public function getKeyType(){
-        return 'string';
-    }
+    
 }

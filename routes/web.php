@@ -19,8 +19,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/', function () {
-//     return Role::create([
-//         'name' => 'Role1',
-//     ]);
+// Route::get('test', function(){
+//     return 'masuk';
 // });
