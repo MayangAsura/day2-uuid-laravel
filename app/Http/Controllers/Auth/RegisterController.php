@@ -39,11 +39,7 @@ class RegisterController extends Controller
             'valid_until' => now()->addMinutes(5)
         ]);
 
-        $data['user'] = ([
-            'name' => $user->name,
-            'email' => $user->email,
-        ]);
-
+        $data['user'] = $user;
         
         return response()->json([
             'response_code' => '00',
