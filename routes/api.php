@@ -21,5 +21,10 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::post('register', 'Auth\RegisterController');
+Route::namespace('Auth')->group(function(){
+    Route::post('register', 'RegisterController');
+    Route::post('login', 'LoginController');
+    Route::post('verification', 'VerificationController');
+
+});
 
