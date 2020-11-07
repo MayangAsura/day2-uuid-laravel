@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Otp;
+use App\Otp, App\User;
 use Illuminate\Support\Carbon;
 
 class VerificationController extends Controller
@@ -42,6 +42,10 @@ class VerificationController extends Controller
                 'message' => 'OTP terverifikasi'
             ]);   
             $data['code'] = 200; 
+            User::where('id', $otp->user_id)
+            ->update([
+                'email_verified_at' => Carbon::now()
+            ]);
         }
        
         return response()->json($data);
