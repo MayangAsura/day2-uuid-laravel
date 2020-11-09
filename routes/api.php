@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,4 +30,11 @@ Route::namespace('Auth')->group(function(){
     Route::post('create_update_password', 'CreateUpdatePassword');
 
 });
+
+Route::group(['auth:api'], function () {
+    Route::get('profile/get_profile', 'UserController@index');
+    Route::patch('profile/update/{}', 'UserController@update');
+});
+
+// Route::get('user', 'UserController');
 

@@ -46,11 +46,6 @@ class RegisterController extends Controller
             'response_message' => 'OTP silakan cek email',
             'data' => $data
         ]);
-
-        // return response()->json([
-        //     'name' =>  $request->name,
-        //     'email' =>  $request->email
-        // ]);
     }
 
     

@@ -46,6 +46,7 @@ class VerificationController extends Controller
             ->update([
                 'email_verified_at' => Carbon::now()
             ]);
+
         }
        
         return response()->json($data);
