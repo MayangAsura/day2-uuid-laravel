@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Resources\ProfileCollection;
-use App\Http\Resources\ProfileResource;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use Illuminate\Support\Carbon;
 
 class UserController extends Controller
 {
@@ -23,19 +23,27 @@ class UserController extends Controller
 
     public function update(Request $request, User $user){
         
-        if($request->hasFile('photo')){
-            dd($request->photo->getClientOriginalName());
-        }
+        dd($request->photo->originalName());
+        $request->validate([
+            'photo' => ['mimes:jpg,png,jpeg']
+        ]);
 
-        $path = "";
-        
+        $img_name = $request->photo->getClientOriginalName().Carbon::now();
+        $request->photo->move(public_path('image'), $img_name);
+
         $user->update([
             'name' => request('name'),
-            'photo' => $path
+            'photo' => $img_name
           
         ]);
 
-        return new ProfileResource($user);     
+        return response()->json([
+            'response_code' => '00',
+            'response_message' => 'Berhasil Diupdate',
+            'data' => ([
+                'profile' => $user
+            ])
+        ]);   
     }
         
 

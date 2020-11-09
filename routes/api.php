@@ -33,7 +33,7 @@ Route::namespace('Auth')->group(function(){
 
 Route::group(['auth:api'], function () {
     Route::get('profile/get_profile', 'UserController@index');
-    Route::patch('profile/update/{}', 'UserController@update');
+    Route::patch('profile/update', 'UserController@update');
 });
 
 // Route::get('user', 'UserController');
