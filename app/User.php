@@ -7,7 +7,7 @@ use App\Traits\UuidTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use Illuminate\Support\Carbon;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -23,6 +23,25 @@ class User extends Authenticatable implements JWTSubject
         static::creating(function($model){
             $model->roles_id = $model->get_guest_id();
         });
+
+        //DIPANGGIL KETIKA TABEL USER SUDAH DI CREATE
+        static::created(function($model){
+            $model->generate_otp_code();
+        });
+    }
+
+    public function generate_otp_code(){
+        
+        do{
+            $random = mt_rand(100000, 999999);
+            $check = Otp::where('otp', $random)->first();
+        }while($check);
+        {
+            $otp_code = Otp::updateOrCreate(
+                ['user_id' => $this->id],
+                ['otp' => '$random', 'valid_until' => Carbon::now()->addMinutes(5)]
+            );
+        }
     }
     /**
      * The attributes that are mass assignable.

@@ -21,11 +21,14 @@ class RegenerateOtpController extends Controller
         ]);
 
         $user =  User::where('email', $request->email)->first();
-        Otp::where('user_id', $user->id)
-        ->update([  
-            'otp_code' => mt_rand(100000, 999999),
-            'valid_until' => now()->addMinutes(5)
-        ]);
+        $user->generate_otp_code();
+
+        //TIDAK PERLU PAKAI INI LAGI, SUDAH ADA FUNCTION DI MODEL USER, BISA DIPANGGIL
+        // Otp::where('user_id', $user->id)
+        // ->update([  
+        //     'otp_code' => mt_rand(100000, 999999),
+        //     'valid_until' => now()->addMinutes(5)
+        // ]);
 
         return response()->json([
             'response_code' => 00,

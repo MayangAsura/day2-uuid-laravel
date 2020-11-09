@@ -27,17 +27,16 @@ class RegisterController extends Controller
             'email' => ['email', 'required', 'unique:users,email']
         ]);
 
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-        ]);
+        $data_request = $request->all();
+        $user = User::create($data_request);
 
-        $user =  User::where('email', $request->email)->first();
-        Otp::create([  
-            'user_id' => $user->id,
-            'otp_code' => mt_rand(100000, 999999),
-            'valid_until' => now()->addMinutes(5)
-        ]);
+        //TIDAK PERLU PAKAI INI LAGI, SUDAH ADA EVENT CREATED DI MODEL USER
+        // $user =  User::where('email', $request->email)->first();
+        // Otp::create([  
+        //     'user_id' => $user->id,
+        //     'otp_code' => mt_rand(100000, 999999),
+        //     'valid_until' => now()->addMinutes(5)
+        // ]);
 
         $data['user'] = $user;
         
