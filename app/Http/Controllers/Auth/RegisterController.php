@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\UserRegisterEvent;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\User, App\Otp;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Hash;
+
 
 class RegisterController extends Controller
 {
@@ -29,14 +28,12 @@ class RegisterController extends Controller
 
         $data_request = $request->all();
         $user = User::create($data_request);
-
-        //TIDAK PERLU PAKAI INI LAGI, SUDAH ADA EVENT CREATED DI MODEL USER
-        // $user =  User::where('email', $request->email)->first();
-        // Otp::create([  
-        //     'user_id' => $user->id,
-        //     'otp_code' => mt_rand(100000, 999999),
-        //     'valid_until' => now()->addMinutes(5)
-        // ]);
+   
+        $user =  User::where('email', $request->email)->first();
+        $otp = Otp::where('user_id', $user->id)->first();
+        // dd($otp);
+        // Mail::to($request->email)->send(new UserRegisterMail($otp));
+        event(new UserRegisterEvent($otp, $user));
 
         $data['user'] = $user;
         
@@ -50,3 +47,12 @@ class RegisterController extends Controller
     
 
 }
+
+
+     //TIDAK PERLU PAKAI INI LAGI, SUDAH ADA EVENT CREATED DI MODEL USER
+        // $user =  User::where('email', $request->email)->first();
+        // Otp::create([  
+        //     'user_id' => $user->id,
+        //     'otp_code' => mt_rand(100000, 999999),
+        //     'valid_until' => now()->addMinutes(5)
+        // ]);

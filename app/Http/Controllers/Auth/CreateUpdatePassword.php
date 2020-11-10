@@ -19,24 +19,17 @@ class CreateUpdatePassword extends Controller
         
         $request->validate([
             'email' => ['email', 'required'],
-            'password' => ['required', 'min:6'],
-            'password_confirm' => ['required', 'min:6']
+            'password' => ['required', 'confirmed', 'min:6'],
         ]);
 
         $user = User::where('email', $request->email)->first();
         if(!$user){
             return response()->json([
-                'response_code' => '11',
+                'response_code' => '01',
                 'response_message' => 'Email tidak terdaftar',
                
             ]);
         }  
-        if($request->password !== $request->password_confirm){
-            return response()->json([
-                'response_code' => '01',
-                'response_message' => 'Password tidak sama',
-            ]);     
-        }
         // dd($user->id);
         User::where('id', $user->id)
         ->update([
