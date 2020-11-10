@@ -8,7 +8,7 @@
 </head>
 <body>
     
-    <p>{{ $otp_code}}  id your OTP code. This code will expire in {{ $valid_until}}</p>
+    <p>{{ $otp_code}}  is your OTP code. This code will expire in {{ $valid_until}}</p>
 
 </body>
 </html> 
