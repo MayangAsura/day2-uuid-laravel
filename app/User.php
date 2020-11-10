@@ -34,12 +34,12 @@ class User extends Authenticatable implements JWTSubject
         
         do{
             $random = mt_rand(100000, 999999);
-            $check = Otp::where('otp', $random)->first();
+            $check = Otp::where('otp_code', $random)->first();
         }while($check);
         {
             $otp_code = Otp::updateOrCreate(
                 ['user_id' => $this->id],
-                ['otp' => '$random', 'valid_until' => Carbon::now()->addMinutes(5)]
+                ['otp_code' => $random, 'valid_until' => Carbon::now()->addMinutes(5)]
             );
         }
     }

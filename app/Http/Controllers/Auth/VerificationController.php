@@ -23,32 +23,46 @@ class VerificationController extends Controller
         ]);
 
         $otp = Otp::where('otp_code', $request->otp_code)->first();
-        // dd($otp->otp_code);
-        if(!$otp->otp_code){
-            $data['response'] = ([
-                'code' => '01',
-                'message' => 'OTP tidak ditemukan'
-            ]);
-            $data['code'] = 200;
+        
+        if(!$otp){
+
+            return response()->json([
+                'response_code' => '01',
+                'response_message' => 'OTP tidak ditemukan'
+            ], 200);
+            // $data['response'] = ([
+            //     'code' => '01',
+            //     'message' => 'OTP tidak ditemukan'
+            // ]);
+            // $data['code'] = 200;
+
         }else if(Carbon::now() > $otp->valid_until){
-            $data['response']= ([
-                'code' => '11',
-                'message' => 'OTP melewati tenggat waktu'
-            ]);
-            $data['code'] = 200;
+             
+            return response()->json([
+                'response_code' => '11',
+                'response_message' => 'OTP tidak berlaku, silahkan generate ulang'
+            ], 200);
+
         }else{
-            $data['response']= ([
+
+            // $user = User::where('id', $otp->user_id)
+            // ->update([
+            //     'email_verified_at' => Carbon::now()
+            // ]);
+            $user = User::find($otp->user_id);
+            $user->email_verified_at = Carbon::now();
+            $user->save();
+            //DELETE AGAR TIDAK PENUHIN DATABASE
+            $otp->delete();
+
+            return response()->json([
                 'code' => '00',
-                'message' => 'OTP terverifikasi'
-            ]);   
-            $data['code'] = 200; 
-            User::where('id', $otp->user_id)
-            ->update([
-                'email_verified_at' => Carbon::now()
-            ]);
+                'message' => 'OTP terverifikasi',
+                'data' => $user
+            ], 200);
 
         }
        
-        return response()->json($data);
+        
     }
 }
