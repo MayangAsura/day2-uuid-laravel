@@ -30,14 +30,12 @@ class UserRegisterMail extends Mailable
      */
     public function build()
     {
-        $data = [
-           
-        ];
         return $this->from('example@example.com')
                     ->view('send_email_user_registered')
                     ->with([
                         'otp_code' => $this->otp->otp_code,
-                        'valid_until' => $this->otp->valid_until
+                        'valid_until' => $this->otp->valid_until,
+                        'name' => $this->otp->get_user_data->name
                         ]);
 
     }

@@ -13,4 +13,8 @@ class Otp extends Model
 
     protected $table = 'otp_codes';
 
+    public function get_user_data(){
+        return $this->belongsTo('App\User', 'user_id'); // user_id = FOREIGN KEY
+    }
+
 }
