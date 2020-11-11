@@ -21,10 +21,10 @@ class UserRegisterEvent
      *
      * @return void
      */
-    public function __construct(Otp $otp, User $user)
+    public function __construct(Otp $otp)
     {
         $this->otp = $otp;
-        $this->user = $user;
+        // $this->user = $user;
     }
 
     /**

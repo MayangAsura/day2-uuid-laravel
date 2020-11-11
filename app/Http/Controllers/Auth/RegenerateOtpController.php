@@ -34,11 +34,11 @@ class RegenerateOtpController extends Controller
         // Otp::where('user_id', $user->id)
         // ->update([  
         //     'otp_code' => mt_rand(100000, 999999),
-        //     'valid_until' => now()->addMinutes(5)
+        //     'valid_until' => Carbon::now()->addMinutes(5)
         // ]);
-        $otp = Otp::where('user_id', $user->id)->first();
+        $otp = Otp::where('user_id', $user->id)->with('get_user_data')->first();
         // dd($otp);
-        event(new UserRegisterEvent($otp, $user));
+        event(new UserRegisterEvent($otp));
 
         return response()->json([
             'response_code' => 00,

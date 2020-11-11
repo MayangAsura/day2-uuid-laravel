@@ -28,8 +28,6 @@ class SendEmailUserRegistered implements ShouldQueue
      */
     public function handle(UserRegisterEvent $event)
     {
-        // dd($event->otp->get_user_data->email);
-
-        Mail::to($event->user->email)->send(new UserRegisterMail($event->otp));
+        Mail::to($event->otp->get_user_data->email)->send(new UserRegisterMail($event->otp));
     }
 }

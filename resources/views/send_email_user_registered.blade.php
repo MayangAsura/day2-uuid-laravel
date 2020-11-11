@@ -6,7 +6,7 @@
   <title>OTP CODE MAIL</title>
 
   <!-- Styles -->
-  <link href="{{ asset('css_custom/css_custom.css') }}" rel="stylesheet">
+  {{-- <link href="{{ asset('css_custom/css_custom.css') }}" rel="stylesheet"> --}}
 
   <style>
       @import url(http://fonts.googleapis.com/css?family=Droid+Sans);
@@ -137,7 +137,7 @@ width: 80% !important;
                           <tr>
                             <td style="color:#187272;">
                             <br>
-                                Here is your OTP code. This code will expire in {{ format($valid_until, 'd F Y') }}
+                                Here is your OTP code. This code will expire in {{ $valid_until}}
                             <br>
                             <br>
                             </td>
@@ -166,108 +166,7 @@ width: 80% !important;
                   </tr>
                 </table>
 
-                {{-- <table style="margin: 0 auto;" cellpadding="0" cellspacing="0" class="force-full-width" bgcolor="#f5774e">
-                  <tr>
-                    <td style="background-color:#f5774e;">
 
-                    <center>
-                      <table style="margin:0 auto;" cellspacing="0" cellpadding="0" class="force-width-80">
-                        <tr>
-                          <td style="text-align:left; color:#933f24">
-                          <br>
-                          <br>
-                            <span style="color:#ffffff;">Bob Erlicious</span> <br>
-                            123 Flower Drive <br>
-                            Victoria, BC <br>
-                            V9P 2E8 <br>
-                            1(250)222-2232
-                          </td>
-                          <td style="text-align:right; vertical-align:top; color:#933f24">
-                          <br>
-                          <br>
-                            <span style="color:#ffffff;">Invoice: 00234</span> <br>
-                            April 3, 2014
-                          </td>
-                        </tr>
-                      </table>
-
-
-                      <table style="margin:0 auto;" cellspacing="0" cellpadding="0" class="force-width-80">
-                        <tr>
-                          <td  class="mobile-block" >
-                          <br>
-                          <br>
-
-                            <table cellspacing="0" cellpadding="0" class="force-full-width">
-                              <tr>
-                                <td style="color:#ffffff; background-color:#ac4d2f; padding: 10px 0px;">
-                                  Expected Delivery Date
-                                </td>
-                              </tr>
-                              <tr>
-                                <td style="color:#933f24; padding:10px 0px; background-color: #f7a084;">
-                                  Monday, 13th November 2014
-                                </td>
-                              </tr>
-                            </table>
-
-                            <br>
-                          </td>
-                        </tr>
-                      </table>
-
-
-
-                      <table style="margin: 0 auto;" cellspacing="0" cellpadding="0" class="force-width-80">
-                        <tr>
-                          <td style="text-align:left; color:#933f24;">
-                          <br>
-                            Thank you for your business. Please <a style="color:#ffffff;" href="#">contact us</a> with any questions regarding your order.
-                          <br>
-                          <br>
-                          Awesome Inc
-                          <br>
-                          <br>
-                          <br>
-                          </td>
-                        </tr>
-                      </table>
-                    </center>
-
-
-
-                    </td>
-                  </tr>
-
-
-                </table>
-
-                <table style="margin: 0 auto;" cellpadding="0" cellspacing="0" class="force-full-width" bgcolor="#414141" style="margin: 0 auto">
-                  <tr>
-                    <td style="background-color:#414141;">
-                    <br>
-                    <br>
-                      <img src="https://www.filepicker.io/api/file/R4VBTe2UQeGdAlM7KDc4" alt="google+">
-                      <img src="https://www.filepicker.io/api/file/cvmSPOdlRaWQZnKFnBGt" alt="facebook">
-                      <img src="https://www.filepicker.io/api/file/Gvu32apSQDqLMb40pvYe" alt="twitter">
-                      <br>
-                      <br>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="color:#bbbbbb; font-size:12px;">
-                      <a href="#">View in browser</a> | <a href="#">Unsubscribe</a> | <a href="#">Contact</a>
-                      <br><br>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="color:#bbbbbb; font-size:12px;">
-                       © 2014 All Rights Reserved
-                       <br>
-                       <br>
-                    </td>
-                  </tr>
-                </table> --}}
 
 
 

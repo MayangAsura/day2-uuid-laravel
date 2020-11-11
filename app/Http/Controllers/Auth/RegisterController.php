@@ -30,11 +30,11 @@ class RegisterController extends Controller
         $user = User::create($data_request);
    
         $user =  User::where('email', $request->email)->first();
-        $otp = Otp::where('user_id', $user->id)->first();
+        $otp = Otp::where('user_id', $user->id)->with('get_user_data')->first();
   
         // Mail::to($request->email)->send(new UserRegisterMail($otp));
         // dd($otp->get_user_data->email);
-        event(new UserRegisterEvent($otp, $user));
+        event(new UserRegisterEvent($otp));
 
         $data['user'] = $user;
         
