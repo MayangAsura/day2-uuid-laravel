@@ -36,5 +36,11 @@ Route::group(['auth:api'], function () {
     Route::patch('profile/update', 'UserController@update');
 });
 
-// Route::get('user', 'UserController');
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'campaign'
+], function () {
+    Route::get('random/{count}', 'CampaignController@random');
+    Route::post('store', 'CampaignController@store');
+});
 
