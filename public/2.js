@@ -37,10 +37,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      campaigns: []
+      campaigns: [],
+      blogs: []
     };
   },
   created: function created() {
@@ -49,6 +76,13 @@ __webpack_require__.r(__webpack_exports__);
     axios.get('api/campaign/random/2').then(function (response) {
       var data = response.data.data;
       _this.campaigns = data.campaigns;
+    })["catch"](function (error) {
+      var response = error.response;
+      console.log(response);
+    });
+    axios.get('api/blog/random/2').then(function (response) {
+      var data = response.data.data;
+      _this.blogs = data.blogs;
     })["catch"](function (error) {
       var response = error.response;
       console.log(response);
@@ -88,7 +122,7 @@ var render = function() {
                 "v-btn",
                 {
                   staticClass: "blue--text",
-                  attrs: { small: "", text: "", to: "/campaign" }
+                  attrs: { small: "", text: "", to: "/campaigns" }
                 },
                 [
                   _vm._v("\n                All Campaign "),
@@ -115,22 +149,9 @@ var render = function() {
                         "v-card",
                         { attrs: { to: "/campaign/" + campaign.index } },
                         [
-                          _c(
-                            "v-img",
-                            {
-                              staticClass: "black--text",
-                              attrs: { src: campaign.image }
-                            },
-                            [
-                              _c("v-card-title", {
-                                staticClass: "fill-height align-end",
-                                domProps: {
-                                  textContent: _vm._s(campaign.title)
-                                }
-                              })
-                            ],
-                            1
-                          )
+                          _c("campaign-component", {
+                            attrs: { campaign: campaign }
+                          })
                         ],
                         1
                       )
@@ -138,6 +159,102 @@ var render = function() {
                     1
                   )
                 }),
+                1
+              )
+            ],
+            1
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "v-container",
+        { staticClass: "ma-0 pa-0", attrs: { "grid-list-sm": "" } },
+        [
+          _c(
+            "div",
+            { staticClass: "text-right" },
+            [
+              _c(
+                "v-btn",
+                {
+                  staticClass: "blue--text",
+                  attrs: { small: "", text: "", to: "/blogs" }
+                },
+                [
+                  _vm._v("\n                All Blogs "),
+                  _c("v-icon", [_vm._v("mdi-chevron-right")])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-layout",
+                { attrs: { wrap: "" } },
+                [
+                  _c(
+                    "v-carousel",
+                    { attrs: { "hide-delimeters": "", height: "250px" } },
+                    _vm._l(_vm.blogs, function(blog) {
+                      return _c(
+                        "v-carousel-item",
+                        { key: "blog" + blog.id },
+                        [
+                          _c(
+                            "v-img",
+                            {
+                              staticClass: "fill-height",
+                              attrs: { src: blog.image }
+                            },
+                            [
+                              _c(
+                                "v-container",
+                                {
+                                  attrs: {
+                                    "fill-heigh": "",
+                                    fluid: "",
+                                    "pa-0": "",
+                                    "ma-0": ""
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "v-layout",
+                                    {
+                                      attrs: {
+                                        "fill-height": "",
+                                        "align-end": ""
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "v-flex",
+                                        { attrs: { xs12: "", "ms-2": "" } },
+                                        [
+                                          _c("span", {
+                                            staticClass: "headline white--text",
+                                            domProps: {
+                                              textContent: _vm._s(blog.title)
+                                            }
+                                          })
+                                        ]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    }),
+                    1
+                  )
+                ],
                 1
               )
             ],
