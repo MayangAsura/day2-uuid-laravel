@@ -3,18 +3,17 @@ import router from './router.js'
 import App from './App.vue'
 import vuetify from './plugins/vuetify.js'
 import './bootstrap.js'
-// import CampaignC from './components/CampaignComponent.vue'
 
 
-Vue.component('campaign-component',{
-    props: ['campaign'],
-    template: `
-        <v-img :src="campaign.image" class="black--text" width="50%">
-            <v-card-title class="fill-height align-end" v-text="campaign.title">   
-            </v-card-title>
-        </v-img>
-    `
-})
+// Vue.component('campaign-component',{
+//     props: ['campaign'],
+//     template: `
+//         <v-img :src="campaign.image" class="black--text" width="50%">
+//             <v-card-title class="fill-height align-end" v-text="campaign.title">   
+//             </v-card-title>
+//         </v-img>
+//     `
+// })
 
 const app = new Vue({
     el: 'app',

@@ -62725,12 +62725,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // import CampaignC from './components/CampaignComponent.vue'
+ // Vue.component('campaign-component',{
+//     props: ['campaign'],
+//     template: `
+//         <v-img :src="campaign.image" class="black--text" width="50%">
+//             <v-card-title class="fill-height align-end" v-text="campaign.title">   
+//             </v-card-title>
+//         </v-img>
+//     `
+// })
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('campaign-component', {
-  props: ['campaign'],
-  template: "\n        <v-img :src=\"campaign.image\" class=\"black--text\" width=\"50%\">\n            <v-card-title class=\"fill-height align-end\" v-text=\"campaign.title\">   \n            </v-card-title>\n        </v-img>\n    "
-});
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: 'app',
   router: _router_js__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -62855,13 +62859,13 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     name: 'home',
     alias: '/home',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./views/Home.vue */ "./resources/js/views/Home.vue"));
+      return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./views/Home.vue */ "./resources/js/views/Home.vue"));
     }
   }, {
     path: '/donations',
     name: 'donations',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./views/Donations.vue */ "./resources/js/views/Donations.vue"));
+      return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./views/Donations.vue */ "./resources/js/views/Donations.vue"));
     }
   }, {
     path: '/blogs',
@@ -62873,7 +62877,13 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     path: '/campaigns',
     name: 'campaigns',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./views/Campaigns.vue */ "./resources/js/views/Campaigns.vue"));
+      return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./views/Campaigns.vue */ "./resources/js/views/Campaigns.vue"));
+    }
+  }, {
+    path: '/campaign/:id',
+    name: 'campaign',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./views/Campaign.vue */ "./resources/js/views/Campaign.vue"));
     }
   }, {
     path: '*',

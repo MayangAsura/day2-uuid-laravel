@@ -1,5 +1,5 @@
 
-  
+
     <template>
         <div>
             
@@ -12,7 +12,7 @@
                 <div>
                     <v-layout wrap>
                         <v-flex v-for="campaign in campaigns" :key="'category-'+ campaign.id" xs6>
-                            <v-card :to="'/campaign/' + campaign.index">
+                            <!-- <v-card :to="'/campaign/' + campaign.index"> -->
                                 <!-- <v-img :src="campaign.image" class="black--text">
                                     <v-card-title class="fill-height align-end" v-text="campaign.title">   
                                     </v-card-title>
@@ -20,7 +20,7 @@
 
                                 <campaign-component :campaign="campaign"></campaign-component>
 
-                            </v-card>
+                            <!-- </v-card> -->
                         </v-flex>
                     </v-layout>
                 </div>   
@@ -53,12 +53,16 @@
 
 
     <script>
+        import CampaignComponent from '../components/CampaignComponent';
 
         export default{
             data: () => ({
                 campaigns: [],
                 blogs: []
             }),
+            components: {
+                CampaignComponent
+            },
             created(){
                 axios.get('api/campaign/random/2')
                     .then((response) => {

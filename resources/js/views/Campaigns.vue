@@ -1,3 +1,5 @@
+
+
 <template>
     <div>
         <v-container class="ma-0 pa-0" grid-list-sm>
@@ -5,7 +7,7 @@
 
             <v-layout wrap>
                 <v-flex v-for="campaign in campaigns" :key="'campaign-'+ campaign.id" xs4>
-                    <v-card :to="'/campaign/' + campaign.index">
+                    <!-- <v-card :to="'/campaign/' + campaign.index"> -->
                         <!-- <v-img :src="campaign.image" class="black--text" width="50%">
                             <v-card-title class="fill-height align-end" v-text="campaign.title">   
                             </v-card-title>
@@ -13,7 +15,7 @@
 
                         <campaign-component :campaign="campaign"></campaign-component>
                         
-                    </v-card>
+                    <!-- </v-card> -->
                 </v-flex>
             </v-layout>
 
@@ -31,7 +33,7 @@
  
  
  <script>
-
+    import CampaignComponent from '../components/CampaignComponent';
         export default{
             
             data: () => ({
@@ -39,6 +41,9 @@
                 page: 0,
                 lengthPage: 0
             }),
+            components: {
+                CampaignComponent
+            },
             created(){
                 this.go()
             },
