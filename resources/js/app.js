@@ -3,20 +3,31 @@ import router from './router.js'
 import App from './App.vue'
 import vuetify from './plugins/vuetify.js'
 import './bootstrap.js'
+import store from './store'
+import axios from 'axios'
+
+Vue.prototype.$http = axios
 
 
 // Vue.component('campaign-component',{
 //     props: ['campaign'],
 //     template: `
+//     <v-card :to="'/campaign/' + campaign.id">
+         
 //         <v-img :src="campaign.image" class="black--text" width="50%">
 //             <v-card-title class="fill-height align-end" v-text="campaign.title">   
 //             </v-card-title>
 //         </v-img>
+
+//     </v-card>
 //     `
 // })
 
+// Maaf mas belum selesai, axiosnya gk jalan di Campaign nya :(
+
 const app = new Vue({
     el: 'app',
+    store,
     router,
     vuetify,
     components: {

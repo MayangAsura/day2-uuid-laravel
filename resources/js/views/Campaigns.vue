@@ -33,7 +33,8 @@
  
  
  <script>
-    import CampaignComponent from '../components/CampaignComponent';
+        import CampaignComponent from '../components/CampaignComponent'
+        
         export default{
             
             data: () => ({

@@ -49,9 +49,11 @@
 
 
 <script>
+
     export default{
         data: () => ({
-            campaign: {}
+            campaign: {},
+            store
         }),
         created(){
             this.go()
@@ -59,12 +61,12 @@
         methods: {
             go(){
                 let {id} = this.$route.params
+                console.log(id)
                 let url = 'api/campaign/'+id
-                axios.get(url)
-                .then((response) => {
+                this.$http.get(url).then((response) => {
+                    console.log(response)
                     let {data} = response.data
                     this.campaign = data.campaign
-                    
                 })
                 .catch((error) => {
                     let { responses } = error
@@ -72,6 +74,8 @@
                 })
             },
             donate(){
+                this.$store.commit('increment')
+              
                 alert('donate')
             }
         }
