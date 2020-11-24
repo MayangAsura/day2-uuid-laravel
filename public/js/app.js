@@ -2144,6 +2144,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'App',
   data: function data() {
@@ -2164,6 +2166,9 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     isHome: function isHome() {
       return this.$route.path === '/' || this.$route.path === '/home';
+    },
+    transaction: function transaction() {
+      return this.$store.getters.count;
     }
   } // created(){
   //     console.log('Component mounted')
@@ -3452,28 +3457,39 @@ var render = function() {
                 "v-btn",
                 { attrs: { icon: "" } },
                 [
-                  _c(
-                    "v-badge",
-                    {
-                      attrs: { color: "orange", overlap: "" },
-                      scopedSlots: _vm._u(
+                  _vm.transaction > 0
+                    ? _c(
+                        "v-badge",
+                        {
+                          attrs: { color: "orange", overlap: "" },
+                          scopedSlots: _vm._u(
+                            [
+                              {
+                                key: "badge",
+                                fn: function() {
+                                  return [
+                                    _c("span", [
+                                      _vm._v(
+                                        _vm._s(_vm.$store.state.count) + " "
+                                      )
+                                    ])
+                                  ]
+                                },
+                                proxy: true
+                              }
+                            ],
+                            null,
+                            false,
+                            3828544746
+                          )
+                        },
                         [
-                          {
-                            key: "badge",
-                            fn: function() {
-                              return [_c("span", [_vm._v("3")])]
-                            },
-                            proxy: true
-                          }
+                          _vm._v(" "),
+                          _c("v-icon", [_vm._v("mdi-cash-multiple")])
                         ],
-                        null,
-                        false,
-                        3881307536
+                        1
                       )
-                    },
-                    [_vm._v(" "), _c("v-icon", [_vm._v("mdi-cash-multiple")])],
-                    1
-                  )
+                    : _c("v-icon", [_vm._v("mdi-cash-multiple")])
                 ],
                 1
               ),
@@ -3520,27 +3536,39 @@ var render = function() {
                 "v-btn",
                 { attrs: { icon: "" } },
                 [
-                  _c(
-                    "v-badge",
-                    {
-                      attrs: { color: "orange", overlap: "" },
-                      scopedSlots: _vm._u([
+                  _vm.transaction > 0
+                    ? _c(
+                        "v-badge",
                         {
-                          key: "badge",
-                          fn: function() {
-                            return [
-                              _c("span", [
-                                _vm._v(_vm._s(_vm.$store.state.count) + " ")
-                              ])
-                            ]
-                          },
-                          proxy: true
-                        }
-                      ])
-                    },
-                    [_vm._v(" "), _c("v-icon", [_vm._v("mdi-cash-multiple")])],
-                    1
-                  )
+                          attrs: { color: "orange", overlap: "" },
+                          scopedSlots: _vm._u(
+                            [
+                              {
+                                key: "badge",
+                                fn: function() {
+                                  return [
+                                    _c("span", [
+                                      _vm._v(
+                                        _vm._s(_vm.$store.state.count) + " "
+                                      )
+                                    ])
+                                  ]
+                                },
+                                proxy: true
+                              }
+                            ],
+                            null,
+                            false,
+                            3828544746
+                          )
+                        },
+                        [
+                          _vm._v(" "),
+                          _c("v-icon", [_vm._v("mdi-cash-multiple")])
+                        ],
+                        1
+                      )
+                    : _c("v-icon", [_vm._v("mdi-cash-multiple")])
                 ],
                 1
               )
@@ -3569,9 +3597,11 @@ var render = function() {
             { attrs: { absolute: "", app: "" } },
             [
               _c("v-card-text", { staticClass: "text-center" }, [
-                _vm._v("\n                ©{{ new Date().getFullYear() - "),
-                _c("strong", [_vm._v(" KhadijahApp")]),
-                _vm._v("}}\n            ")
+                _vm._v(
+                  "\n                ©" +
+                    _vm._s(new Date().getFullYear()) +
+                    " - KhadijahApp\n            "
+                )
               ])
             ],
             1
@@ -63986,7 +64016,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _plugins_vuetify_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./plugins/vuetify.js */ "./resources/js/plugins/vuetify.js");
 /* harmony import */ var _bootstrap_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./bootstrap.js */ "./resources/js/bootstrap.js");
 /* harmony import */ var _bootstrap_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_bootstrap_js__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./store */ "./resources/js/store.js");
+/* harmony import */ var _store_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./store.js */ "./resources/js/store.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
 
@@ -63996,7 +64026,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$http = axios__WEBPACK_IMPORTED_MODULE_6___default.a; // Vue.component('campaign-component',{
+var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
+  el: 'app',
+  store: _store_js__WEBPACK_IMPORTED_MODULE_5__["default"],
+  axios: axios__WEBPACK_IMPORTED_MODULE_6___default.a,
+  router: _router_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+  vuetify: _plugins_vuetify_js__WEBPACK_IMPORTED_MODULE_3__["default"],
+  components: {
+    App: _App_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+  }
+}); // Vue.component('campaign-component',{
 //     props: ['campaign'],
 //     template: `
 //     <v-card :to="'/campaign/' + campaign.id">
@@ -64007,17 +64046,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$http = axios__WEBPACK_IMPO
 //     </v-card>
 //     `
 // })
-// Maaf mas belum selesai, axiosnya gk jalan di Campaign nya :(
-
-var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
-  el: 'app',
-  store: _store__WEBPACK_IMPORTED_MODULE_5__["default"],
-  router: _router_js__WEBPACK_IMPORTED_MODULE_1__["default"],
-  vuetify: _plugins_vuetify_js__WEBPACK_IMPORTED_MODULE_3__["default"],
-  components: {
-    App: _App_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
-  }
-}); // /**
+// /**
 //  * First we will load all of this project's JavaScript dependencies which
 //  * includes Vue and other libraries. It is a great starting point when
 //  * building robust, powerful web applications using Vue and Laravel.
@@ -64042,6 +64071,8 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
 // const app = new Vue({
 //     el: '#app',
 // });
+// import axios from 'axios'
+// Vue.prototype.$http = axios
 
 /***/ }),
 
@@ -64134,7 +64165,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     name: 'home',
     alias: '/home',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./views/Home.vue */ "./resources/js/views/Home.vue"));
+      return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./views/Home.vue */ "./resources/js/views/Home.vue"));
     }
   }, {
     path: '/donations',
@@ -64146,19 +64177,19 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     path: '/blogs',
     name: 'blogs',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./views/Blogs.vue */ "./resources/js/views/Blogs.vue"));
+      return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./views/Blogs.vue */ "./resources/js/views/Blogs.vue"));
     }
   }, {
     path: '/campaigns',
     name: 'campaigns',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ./views/Campaigns.vue */ "./resources/js/views/Campaigns.vue"));
+      return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./views/Campaigns.vue */ "./resources/js/views/Campaigns.vue"));
     }
   }, {
     path: '/campaign/:id',
     name: 'campaign',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./views/Campaign.vue */ "./resources/js/views/Campaign.vue"));
+      return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./views/Campaign.vue */ "./resources/js/views/Campaign.vue"));
     }
   }, {
     path: '*',
@@ -64185,12 +64216,16 @@ __webpack_require__.r(__webpack_exports__);
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var state = {
-  count: 0
+  count: 7
 };
-var getters = {};
 var mutations = {
-  increment: function increment(state) {
+  increment: function increment(state, payload) {
     state.count++;
+  }
+};
+var getters = {
+  count: function count(state) {
+    return state.count;
   }
 };
 var actions = {};

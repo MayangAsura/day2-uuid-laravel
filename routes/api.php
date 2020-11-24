@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\UserController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
@@ -40,7 +38,7 @@ Route::group([
     'middleware' => 'api',
     'prefix' => 'campaign'
 ], function () {
-    Route::get('random/{count}', 'CampaignController@random');
+    Route::get('/random/{count}', 'CampaignController@random');
     Route::post('store', 'CampaignController@store');
     Route::get('', 'CampaignController@index');
     Route::get('/{id}', 'CampaignController@detail');

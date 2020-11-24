@@ -82,7 +82,7 @@ class CampaignController extends Controller
 
     public function detail($id){
         $campaign = Campaign::find($id);
-        var_dump($campaign);die();
+        // var_dump($campaign);die();
         $data['campaign'] = $campaign;
 
         return response()->json([

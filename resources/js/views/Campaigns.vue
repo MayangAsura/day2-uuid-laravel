@@ -33,7 +33,7 @@
  
  
  <script>
-        import CampaignComponent from '../components/CampaignComponent'
+        // import CampaignComponent from '../components/CampaignComponent'
         
         export default{
             
@@ -43,7 +43,7 @@
                 lengthPage: 0
             }),
             components: {
-                CampaignComponent
+                CampaignComponent:() => import('../components/CampaignComponent')
             },
             created(){
                 this.go()

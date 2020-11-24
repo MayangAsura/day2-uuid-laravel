@@ -11,16 +11,10 @@
                 </div>
                 <div>
                     <v-layout wrap>
-                        <v-flex v-for="campaign in campaigns" :key="'category-'+ campaign.id" xs6>
-                            <!-- <v-card :to="'/campaign/' + campaign.index"> -->
-                                <!-- <v-img :src="campaign.image" class="black--text">
-                                    <v-card-title class="fill-height align-end" v-text="campaign.title">   
-                                    </v-card-title>
-                                </v-img> -->
-
+                        <v-flex v-for="campaign in campaigns" :key="'campaign-'+ campaign.id" xs6>
+    
                                 <campaign-component :campaign="campaign"></campaign-component>
 
-                            <!-- </v-card> -->
                         </v-flex>
                     </v-layout>
                 </div>   
@@ -52,30 +46,27 @@
     </template>
 
 
-    <script>
-
-        import CampaignComponent from '../components/CampaignComponent'
-      
+    <script> 
         export default{
             data: () => ({
-                campaigns: [],
+                campaigns: {},
                 blogs: []
             }),
-           components: {
-                CampaignComponent
+            components: {
+                CampaignComponent:() => import('../components/CampaignComponent')
             },
             created(){
                 axios.get('api/campaign/random/2')
                     .then((response) => {
                         let {data} = response.data
                         this.campaigns = data.campaigns
-                     
+                        console.log(this.campaigns)
                     })
                     .catch((error) => {
                         let { response } = error
                         console.log(response)
                     })
-                
+
                 axios.get('api/blog/random/2')
                     .then((response) => {
                         let {data} = response.data
@@ -85,6 +76,9 @@
                         let {response} = error
                         console.log(response)
                     })
+            },
+            mounted() {
+                console.log('Component mounted. Home')
             }
         }
     </script>

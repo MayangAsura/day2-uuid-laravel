@@ -1,18 +1,15 @@
-
     <template>
         <div>
             
-           <v-card v-if="campaign.id">
+           <v-card>
                <v-img
                     :src="campaign.image"
                     class="white--text"
-                    height="200px"
-               >
-                <v-card-title
-                    class="fill-height align-end"
-                    v-text="campaign.title"
-                >
-                </v-card-title>
+                    height="200px">
+                    <v-card-title
+                        class="fill-height align-end"
+                        v-text="campaign.title">
+                    </v-card-title>
                </v-img>
 
                <v-card-text>
@@ -62,11 +59,12 @@
             go(){
                 let {id} = this.$route.params
                 console.log(id)
-                let url = 'api/campaign/'+id
-                this.$http.get(url).then((response) => {
-                    console.log(response)
+                let url = '/api/campaign/'+id
+                axios.get(url).then((response) => {
                     let {data} = response.data
                     this.campaign = data.campaign
+                    console.log(this.campaign)
+                    
                 })
                 .catch((error) => {
                     let { responses } = error

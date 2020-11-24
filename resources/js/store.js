@@ -4,17 +4,17 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state = {
-    count: 0,
-}
-
-const getters = {
-
+    count: 7,
 }
 
 const mutations = {
-    increment(state){
+    increment: (state, payload)=>{
         state.count++
     }
+}
+
+const getters = {
+    count : state => state.count
 }
 
 const actions = {

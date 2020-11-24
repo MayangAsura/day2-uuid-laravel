@@ -3,11 +3,19 @@ import router from './router.js'
 import App from './App.vue'
 import vuetify from './plugins/vuetify.js'
 import './bootstrap.js'
-import store from './store'
+import store from './store.js'
 import axios from 'axios'
 
-Vue.prototype.$http = axios
-
+const app = new Vue({
+    el: 'app',
+    store,
+    axios,
+    router,
+    vuetify,
+    components: {
+        App
+    }
+})
 
 // Vue.component('campaign-component',{
 //     props: ['campaign'],
@@ -23,17 +31,6 @@ Vue.prototype.$http = axios
 //     `
 // })
 
-// Maaf mas belum selesai, axiosnya gk jalan di Campaign nya :(
-
-const app = new Vue({
-    el: 'app',
-    store,
-    router,
-    vuetify,
-    components: {
-        App
-    }
-})
 
 // /**
 //  * First we will load all of this project's JavaScript dependencies which
@@ -67,3 +64,7 @@ const app = new Vue({
 // const app = new Vue({
 //     el: '#app',
 // });
+
+// import axios from 'axios'
+
+// Vue.prototype.$http = axios
