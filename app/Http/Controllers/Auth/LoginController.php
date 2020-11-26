@@ -24,7 +24,7 @@ class LoginController extends Controller
 
         $token = Auth::attempt($request->only('email', 'password'));
         if(!$token){
-            return response()->json(null, 401);
+            return response()->json(['error' => 'Email atau password tidak ditemukan'], 401);
         }
     
         $user = User::where('email', $request->email)->first();

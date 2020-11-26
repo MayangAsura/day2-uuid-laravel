@@ -23,28 +23,58 @@ class UserController extends Controller
 
     public function update(Request $request, User $user){
         
-        dd($request->photo->originalName());
+        // dd($request->photo->originalName());
         $request->validate([
-            'photo' => ['mimes:jpg,png,jpeg']
+            'image' => 'mimes:jpg,jpeg,png'
         ]);
 
-        $img_name = $request->photo->getClientOriginalName().Carbon::now();
-        $request->photo->move(public_path('image'), $img_name);
+            
+        // if($request->hasFile('photo')){
+            $image = $request->file('image');
+            $image_extention = $image->getClientOriginalExtension();
+            $image_name = $user->id . "." . $image_extention;
+            $image_folder = '/photos/profile/';
+            $image_location = $image_folder.$image_name;
 
-        $user->update([
-            'name' => request('name'),
-            'photo' => $img_name
-          
-        ]);
+            try{
+                $image->move(public_path($image_folder), $image_name);
+                $user->update([
+                    'name' => $request->name,
+                    'photo' => $image_location
+                ]);
+                $data['user']= $user;
 
-        return response()->json([
-            'response_code' => '00',
-            'response_message' => 'Berhasil Diupdate',
-            'data' => ([
-                'profile' => $user
-            ])
-        ]);   
+                return response()->json([
+                    'response_code' => '00',
+                    'response_message' => 'Berhasil Diupdate',
+                    'data' => ([
+                        'profile' => $user
+                    ])
+                ]);
+            }catch(\Exception $e){
+
+                return response()->json([
+                    'response_code' => '01',
+                    'response_message' => 'Photo Profil Gagal Upload',
+                    'data' => $data
+                ], 200);
+
+            }
+               
+        
+        
     }
+        // $img_name = $request->photo->getClientOriginalName().Carbon::now();
+        // $request->photo->move(public_path('image'), $img_name);
+
+        // $user->update([
+        //     'name' => request('name'),
+        //     'photo' => $img_name
+          
+        // ]);
+        
+
+        
         
 
 }

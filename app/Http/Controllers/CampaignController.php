@@ -66,7 +66,7 @@ class CampaignController extends Controller
             }catch(\Exception $e){
                 return response()->json([
                     'response_code' => '01',
-                    'response_message' => 'Photo Profil Gagal Upload',
+                    'response_message' => 'Photo Campaign Gagal Upload',
                     'data' => $data
                 ], 200);
             }
@@ -83,6 +83,20 @@ class CampaignController extends Controller
     public function detail($id){
         $campaign = Campaign::find($id);
         // var_dump($campaign);die();
+        $data['campaign'] = $campaign;
+
+        return response()->json([
+            'response_code' => '00',
+            'response_message' => 'data campaign berhasil ditampilkan',
+            'data' => $data
+        ], 200);
+    }
+
+    public function search($keyword){
+        $campaign = Campaign::select('*')
+            ->where('title', 'LIKE', '%'.$keyword.'%')
+            ->get();
+
         $data['campaign'] = $campaign;
 
         return response()->json([

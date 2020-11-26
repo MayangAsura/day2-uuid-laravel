@@ -26,7 +26,8 @@ Route::namespace('Auth')->group(function(){
     Route::post('verification', 'VerificationController');
     Route::post('regenerate_otp', 'RegenerateOtpController');
     Route::post('create_update_password', 'CreateUpdatePassword');
-
+    Route::post('logout', 'LogoutController')->middleware('auth:api');
+    Route::post('check-token', 'CheckTokenController')->middleware('auth:api');
 });
 
 Route::group(['auth:api'], function () {
@@ -42,6 +43,7 @@ Route::group([
     Route::post('store', 'CampaignController@store');
     Route::get('', 'CampaignController@index');
     Route::get('/{id}', 'CampaignController@detail');
+    Route::get('/search/{keyword}', 'CampaignController@search');
 });
 Route::group([
     'middleware' => 'api',
