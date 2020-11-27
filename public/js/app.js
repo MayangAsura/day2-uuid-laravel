@@ -3579,7 +3579,7 @@ var render = function() {
                     [
                       _c(
                         "v-list-item-avatar",
-                        [_c("v-img", { attrs: { src: "user.user.photo" } })],
+                        [_c("v-img", { attrs: { src: _vm.user.user.photo } })],
                         1
                       ),
                       _vm._v(" "),
@@ -3682,7 +3682,7 @@ var render = function() {
       _vm.isHome
         ? _c(
             "v-app-bar",
-            { attrs: { app: "", color: "success", dark: "" } },
+            { attrs: { app: "", color: "#407899", dark: "" } },
             [
               _c("v-app-bar-nav-icon", {
                 on: {
@@ -3758,7 +3758,7 @@ var render = function() {
           )
         : _c(
             "v-app-bar",
-            { attrs: { app: "", color: "success", dark: "" } },
+            { attrs: { app: "", color: "#407899", dark: "" } },
             [
               _c(
                 "v-btn",
@@ -64864,6 +64864,12 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     name: 'campaign',
     component: function component() {
       return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./views/Campaign.vue */ "./resources/js/views/Campaign.vue"));
+    }
+  }, {
+    path: '/social/:provider/callback',
+    name: 'social',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ./views/Social.vue */ "./resources/js/views/Social.vue"));
     }
   }, {
     path: '*',

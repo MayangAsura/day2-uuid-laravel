@@ -1,8 +1,5 @@
-
-
     <template>
-        <div>
-            
+        <div>   
             <v-container class="ma-0 pa-0" grid-list-sm>
                 <div class="text-right">
                     <v-btn small text to="/campaigns" class="blue--text">
@@ -26,13 +23,13 @@
                         All Blogs <v-icon>mdi-chevron-right</v-icon>
                     </v-btn>
                     <v-layout wrap>
-                        <v-carousel hide-delimeters height="250px">
-                            <v-carousel-item v-for="blog in blogs" :key="'blog' +blog.id">
+                        <v-carousel hide-delimeters height="300px">
+                            <v-carousel-item v-for="blog in blogs" :key="'blog-'+blog.id">
                                 <v-img :src="blog.image" class="fill-height">
-                                    <v-container fill-heigh fluid pa-0 ma-0>
+                                    <v-container fill-height fluid pa-0 ma-0>
                                         <v-layout fill-height align-end>
                                             <v-flex xs12 ms-2>
-                                                <span class="headline white--text" v-text="blog.title"></span>
+                                                <span class="headline black--text" v-text="blog.title"></span>
                                             </v-flex>
                                         </v-layout>
                                     </v-container>

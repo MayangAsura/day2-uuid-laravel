@@ -23,14 +23,17 @@ class UserController extends Controller
 
     public function update(Request $request, User $user){
         
+
         // dd($request->photo->originalName());
         $request->validate([
-            'image' => 'mimes:jpg,jpeg,png'
+            'name' => '',
+            'photo' => 'mimes:jpg,jpeg,png'
         ]);
 
             
-        // if($request->hasFile('photo')){
-            $image = $request->file('image');
+        // if($request->hasFile('image')){
+            $image = $request->file('photo');
+            // dd($image);
             $image_extention = $image->getClientOriginalExtension();
             $image_name = $user->id . "." . $image_extention;
             $image_folder = '/photos/profile/';
@@ -61,7 +64,7 @@ class UserController extends Controller
 
             }
                
-        
+        // }
         
     }
         // $img_name = $request->photo->getClientOriginalName().Carbon::now();
@@ -73,8 +76,7 @@ class UserController extends Controller
           
         // ]);
         
-
-        
+    
         
 
 }

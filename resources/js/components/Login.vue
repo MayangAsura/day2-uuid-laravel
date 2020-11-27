@@ -38,6 +38,12 @@
                             <v-icon right dark>mdi-lock-open</v-icon>
 
                         </v-btn>
+                        <v-btn
+                            color="primary lighten-1"
+                            @click="authProvider('google')">
+                            Login With Google
+                            <v-icon right dark>mdi-google</v-icon>
+                        </v-btn>
                     </div>
                 </v-form>
             </v-container>
@@ -57,7 +63,7 @@
                 email: 'example@example.com',
                 emailRules:[
                     v => !!v || 'E-mail is required',
-                    // v => /([a-zA-Z0-9_]{1,})(@)([a-zA-Z0-9_]{2,}).([a-zA-Z0-9_]{2,})+/.test(v) || 'E-mail must be valid'
+                    v => /([a-zA-Z0-9_]{1,})(@)([a-zA-Z0-9_]{2,}).([a-zA-Z0-9_]{2,})+/.test(v) || 'E-mail must be valid'
                 ],
                 showPassword: false,
                 password: '',
@@ -114,6 +120,19 @@
             },
             close(){
                 this.$emit('closed', false)
+            },
+            authProvider(provider){
+                let url = '/api/social/' + provider
+                axios.get(url).then((response) =>{
+                    let data = response.data
+                    window.location.href = data.url
+                }).catch((error) => {
+                    this.setAlert({
+                        status: true,
+                        text: 'Login failed',
+                        color: error
+                    })
+                })
             }
         }
     }

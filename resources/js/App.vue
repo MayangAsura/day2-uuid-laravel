@@ -1,7 +1,7 @@
 <template>
 
     <!-- Note: COMPONENT V-* dibuat oleh VUETIFY -->
-    <v-app>
+    <v-app >
         <alert></alert>
 
         <keep-alive>
@@ -20,7 +20,7 @@
                 <v-list-item v-if="!guest">
 
                     <v-list-item-avatar>
-                        <v-img src="user.user.photo"></v-img>
+                        <v-img :src="user.user.photo"></v-img>
                         <!-- <v-img src="https://randomuser.me/api/portraits/men/78.jpg"></v-img> -->
                     </v-list-item-avatar>
 
@@ -70,7 +70,7 @@
 
         </v-navigation-drawer>
 
-        <v-app-bar app color="success" dark v-if="isHome">
+        <v-app-bar app color="#407899" dark v-if="isHome">
             <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
             <v-toolbar-title>Khadijah Crowdfunding App</v-toolbar-title>
 
@@ -99,7 +99,7 @@
             </v-text-field>
         </v-app-bar>
 
-        <v-app-bar app color="success" dark v-else>
+        <v-app-bar app color="#407899" dark v-else>
             <v-btn icon @click.stop="$router.go(-1)">
                 <v-icon>mdi-arrow-left-circle</v-icon>
             </v-btn>

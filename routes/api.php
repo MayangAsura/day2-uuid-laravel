@@ -28,11 +28,14 @@ Route::namespace('Auth')->group(function(){
     Route::post('create_update_password', 'CreateUpdatePassword');
     Route::post('logout', 'LogoutController')->middleware('auth:api');
     Route::post('check-token', 'CheckTokenController')->middleware('auth:api');
+
+    Route::get('/social/{provider}', 'SocialiteController@redirectToProvider');
+    Route::get('/social/{provider}/callback', 'SocialiteController@handleProviderCallback');
 });
 
 Route::group(['auth:api'], function () {
     Route::get('profile/get_profile', 'UserController@index');
-    Route::patch('profile/update', 'UserController@update');
+    Route::patch('/profile/update', 'UserController@update');
 });
 
 Route::group([

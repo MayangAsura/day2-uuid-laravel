@@ -54,9 +54,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -190,11 +187,11 @@ var render = function() {
                 [
                   _c(
                     "v-carousel",
-                    { attrs: { "hide-delimeters": "", height: "250px" } },
+                    { attrs: { "hide-delimeters": "", height: "300px" } },
                     _vm._l(_vm.blogs, function(blog) {
                       return _c(
                         "v-carousel-item",
-                        { key: "blog" + blog.id },
+                        { key: "blog-" + blog.id },
                         [
                           _c(
                             "v-img",
@@ -207,7 +204,7 @@ var render = function() {
                                 "v-container",
                                 {
                                   attrs: {
-                                    "fill-heigh": "",
+                                    "fill-height": "",
                                     fluid: "",
                                     "pa-0": "",
                                     "ma-0": ""
@@ -228,7 +225,7 @@ var render = function() {
                                         { attrs: { xs12: "", "ms-2": "" } },
                                         [
                                           _c("span", {
-                                            staticClass: "headline white--text",
+                                            staticClass: "headline black--text",
                                             domProps: {
                                               textContent: _vm._s(blog.title)
                                             }
