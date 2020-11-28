@@ -2169,6 +2169,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'App',
@@ -65081,6 +65082,9 @@ __webpack_require__.r(__webpack_exports__);
   mutations: {
     increment: function increment(state, payload) {
       state.transaction++;
+    },
+    decrement: function decrement(state, payload) {
+      state.transaction--;
     }
   },
   actions: {},

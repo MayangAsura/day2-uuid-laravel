@@ -53,6 +53,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -64,7 +67,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.go();
   },
   methods: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])({
-    tambahTransaksi: 'transaction/increment'
+    tambahTransaksi: 'transaction/increment',
+    undoTransaksi: 'transaction/decrement'
   })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])({
     setAlert: 'alert/set'
   })), {}, {
@@ -74,6 +78,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         status: true,
         color: 'success',
         text: "Transaksi berhasil ditambahkan"
+      });
+    },
+    undo: function undo() {
+      this.undoTransaksi();
+      this.setAlert({
+        status: true,
+        color: 'success',
+        text: "Transaksi berhasil dikurangi"
       });
     },
     go: function go() {
@@ -216,6 +228,25 @@ var render = function() {
                     [
                       _c("v-icon", [_vm._v("mdi-money")]),
                       _vm._v("   Donate\n           ")
+                    ],
+                    1
+                  ),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: {
+                        block: "",
+                        color: "secondary",
+                        disabled:
+                          _vm.campaign.collected >= _vm.campaign.required
+                      },
+                      on: { click: _vm.undo }
+                    },
+                    [
+                      _c("v-icon", [_vm._v("mdi-money")]),
+                      _vm._v("   Undo\n            ")
                     ],
                     1
                   )

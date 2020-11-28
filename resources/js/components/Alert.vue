@@ -31,9 +31,9 @@
         name: 'alert',
         computed: {
             ...mapGetters({
-                'status' : 'alert/status',
-                'color' : 'alert/color',
-                'text' : 'alert/text'
+                status : 'alert/status',
+                color : 'alert/color',
+                text : 'alert/text'
             }),
             alert: {
                get(){

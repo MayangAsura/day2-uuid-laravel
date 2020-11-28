@@ -108,14 +108,15 @@
 
             <v-spacer></v-spacer>
             <v-btn icon>
+
                 <v-badge color="orange" overlap  v-if="transaction > 0">
                     <template v-slot:badge >
-                        <span>{{transaction }} </span>
+                        <span>{{ transaction }} </span>
                         <!-- <span>{{$store.state.count }} </span> -->
                     </template>
                     <v-icon>mdi-cash-multiple</v-icon>
                 </v-badge>
-                    <v-icon v-else>mdi-cash-multiple</v-icon>
+                <v-icon v-else>mdi-cash-multiple</v-icon>
             </v-btn>
         </v-app-bar>
 
@@ -153,6 +154,7 @@
                 { title: 'Home', icon: 'mdi-home', route: '/' },
                 { title: 'Campaign', icon: 'mdi-hand-heart', route: '/campaigns' },
             ],
+          
             // guest: false,
             // dialog: false
             // snackbarStatus: false,
@@ -210,6 +212,7 @@
                         color: 'success',
                         text: 'Logout berhasil'
                     })
+                    
                 }).catch((error) =>{
                     let {data} = error.response
                     this.setAlert({
@@ -224,6 +227,7 @@
             // }
         },
         mounted(){
+
             if(this.user){
                 this.checkToken(this.user)
             }

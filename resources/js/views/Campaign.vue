@@ -28,7 +28,10 @@
                <v-card-action>
                    <v-btn block color="primary" @click="donate" :disabled="campaign.collected >= campaign.required"> 
                        <v-icon>mdi-money</v-icon> &nbsp; Donate
-                   </v-btn>
+                   </v-btn><br>
+                   <v-btn block color="secondary" @click="undo" :disabled="campaign.collected >= campaign.required"> 
+                       <v-icon>mdi-money</v-icon> &nbsp; Undo
+                    </v-btn>
                </v-card-action>
            </v-card>
         </div>
@@ -49,7 +52,8 @@
         },
         methods: {
             ...mapMutations({
-                tambahTransaksi : 'transaction/increment'
+                tambahTransaksi : 'transaction/increment',
+                undoTransaksi : 'transaction/decrement'
             }),
             ...mapActions({
                 setAlert: 'alert/set'
@@ -60,6 +64,14 @@
                     status: true,
                     color: 'success',
                     text: "Transaksi berhasil ditambahkan"
+                })
+            },
+            undo(){
+                this.undoTransaksi()
+                this.setAlert({
+                    status: true,
+                    color: 'success',
+                    text: "Transaksi berhasil dikurangi"
                 })
             },
             go(){

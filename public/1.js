@@ -45,9 +45,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'alert',
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
-    'status': 'alert/status',
-    'color': 'alert/color',
-    'text': 'alert/text'
+    status: 'alert/status',
+    color: 'alert/color',
+    text: 'alert/text'
   })), {}, {
     alert: {
       get: function get() {
